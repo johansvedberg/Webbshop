@@ -1,18 +1,18 @@
 <?php
-	require_once('webbshop-php.php');
+    require_once('webbshop-php.php');
     require_once('db_login_info.php');
-	
-    $db = new Database($servername, $username, $password, $dbname);
+    
+    $db = new Database($host, $username, $password, $dbname);
     $db->openConnection();
     if (!$db->isConnected()) {
         header("Location: cannotConnect.html");
         exit();
     }
 
-	//$id = $_SESSION['id'];
+    //$id = $_SESSION['id'];
     $username_login = $_POST['username'];
     $password_login = $_POST['password'];
-	//$products = $db->getProducts();
+    //$products = $db->getProducts();
     $db->closeConnection();
     $login = $db->userLogin($username_login, $password_login);
     session_start();
@@ -22,7 +22,7 @@
     } else {
         $_SESSION['user_logged_in'] = null;
     }
-	$_SESSION['db'] = $db;
+    $_SESSION['db'] = $db;
 ?>
 
 

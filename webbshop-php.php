@@ -1,24 +1,25 @@
 <?php
 
-Class Database {
-	private $servername;
+class Database {
+	private $host;
 	private $username;
 	private $password;
-	private $dbname;
+	private $database;
 	private $conn;
 
-
-	public function __construct($servername, $username, $password, $dbname) {
-		$this->servername = "localhost";
-		$this->username = "root";
-		$this->password = "root";
-		$this->dbname = "webbshopDB";
+	public function __construct($host, $username, $password, $database) {
+		$this->host = $host;
+		$this->userName = $username;
+		$this->password = $password;
+		$this->database = $database;
 	}
 
 	public function openConnection() {
 		try {
-			$this->conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", 
-					$this->username,  $this->password);
+			$this->conn = new PDO("mysql:host=127.0.0.1;dbname=webbshopDB", 
+					"root",  "root");
+			
+
 			$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} catch (PDOException $e) {
 			$error = "Connection ERROR: " . $e->getMessage();
@@ -106,22 +107,6 @@ Class Database {
 		}
 		return $r;
 	}
-
-	
-// Check connection
-
-
-// prepare and bind
-$stmt = $conn->prepare("INSERT INTO users (firstName, lastName, address, password, email, salt) VALUES (?, ?, ?, ?, ?)");
-$stmt->bind_param("sss", $firstname, $lastname, $address, $password, $email, $salt);
-
-
-// set parameters and execute
-
-$firstname = "";
-$lastname = "";
-$address = "";
-$password = "";
-$email = "":
-$salt = "";
 }
+
+?>
