@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "webshopDB";
+$dbname = "webbshopDB";
 
 
 	public function __construct($servername, $username, $password, $dbname) {
@@ -13,9 +13,9 @@ $dbname = "webshopDB";
 	}
 
 	public function openConnection() {
-
+		echo "Hej";
 		try {
-			$this->conn = new PDO("mysql:host=$this->localhost;dbname=$this->dbname", 
+			$this->conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", 
 					$this->username,  $this->password);
 			$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} catch (PDOException $e) {

@@ -1,20 +1,22 @@
 <?php
 	require_once('webbshop-php.php');
-
+    require_once('db_login_info.php');
 	session_start();
+    $db = new Database($host, $username, $password, $dbname);
+    $db->openConnection();
+
 	$db = $_SESSION['db'];
 	$id = $_SESSION['id'];
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-	$db->openConnection();
-	$products = $db->getProducts();
-  $login = $db->userLogin($username, $password);
-  if($login == true) {
-    $_SESSION['user_logged_in'] = $username;
-  } else {
-    $_SESSION['user_logged_in'] = null;
-  }
-	$db->closeConnection();
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+	//$products = $db->getProducts();
+    $login = $db->userLogin($username, $password);
+    if($login == true) {
+        $_SESSION['user_logged_in'] = $username;
+    } else {
+        $_SESSION['user_logged_in'] = null;
+    }
+	   $db->closeConnection();
 ?>
 
 
