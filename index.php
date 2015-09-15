@@ -1,3 +1,23 @@
+<?php
+	require_once('database.inc.php');
+
+	session_start();
+	$db = $_SESSION['db'];
+	$id = $_SESSION['id'];
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+	$db->openConnection();
+	$products = $db->getProducts();
+  $login = $db->userLogin($username, $password);
+  if($login == true) {
+    $_SESSION['user_logged_in'] = $username;
+  } else {
+    $_SESSION['user_logged_in'] = null;
+  }
+	$db->closeConnection();
+?>
+
+
 <html>
 
 <head>
@@ -38,11 +58,13 @@ $(document).ready(function() {
 </div>
 <div  class = "middle">
 <?php
-	for ($i = 1; $i <= count($pallets); $i++) {
+	for ($i = 1; $i <= count($products); $i++) {
+  echo $products[$i]["name"];
+  echo $products[$i]["articleID"];
+  echo $products[$i]["price"];
+  echo $products[$i]["quantity"];
 
-
-  }
-
+    }
 
 ?>
 
