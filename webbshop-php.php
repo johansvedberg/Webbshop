@@ -1,4 +1,6 @@
 <?php
+
+Class Database {
 	private $servername;
 	private $username;
 	private $password;
@@ -122,3 +124,4 @@ $address = "";
 $password = "";
 $email = "":
 $salt = "";
+}
