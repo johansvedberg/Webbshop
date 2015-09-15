@@ -15,8 +15,8 @@ $dbname = "webshopDB";
 	public function openConnection() {
 
 		try {
-			$this->conn = new PDO("mysql:host=$this->host;dbname=$this->database", 
-					$this->userName,  $this->password);
+			$this->conn = new PDO("mysql:host=$this->localhost;dbname=$this->dbname", 
+					$this->username,  $this->password);
 			$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} catch (PDOException $e) {
 			$error = "Connection ERROR: " . $e->getMessage();
