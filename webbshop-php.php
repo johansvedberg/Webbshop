@@ -5,6 +5,7 @@ class Database {
 	private $username;
 	private $password;
 	private $database;
+	private $port;
 	private $conn;
 
 	public function __construct($host, $username, $password, $database) {
@@ -12,11 +13,13 @@ class Database {
 		$this->userName = $username;
 		$this->password = $password;
 		$this->database = $database;
+		$this->port = "8889";
+
 	}
 
 	public function openConnection() {
 		try {
-			$this->conn = new PDO("mysql:host=127.0.0.1;dbname=webbshopDB", 
+			$this->conn = new PDO("mysql:host=$this->host;dbname=$this->database", 
 					"root",  "root");
 			
 
