@@ -80,11 +80,30 @@ $dbname = "webshopDB";
 
 	public function signUp($username, $password, $firstname, $lastname, $address) {
 		$salt =  sha1(time());
-		$sql = "insert into users values (?, ?, ?, ?, ?)";
-		$result = $this->executeQuery($sql, array()
+		$sql = "insert into users values (?, ?, ?, ?, ?, ?, 0)";
+		try {
+			$result = $this->executeUpdate($sql, array($firstname, $lastname, $address, $username, $password, $salt));
+		}	catch(PDOException $e) {
+				return false;
+		}
+		return true;
 	}
 // Create connection
 
+	public function getProducts() {
+		$sql = "select name, articleID, price, quantity from Products";
+		$result = $this->executeQuery($sql, null);
+		$r = [];
+		for($i = 0; $i < count($result); $i++) {
+			$a = [];
+			array_push($a, $result[$i]["name"]);
+			array_push($a, $result[$i]["articleID"]);
+			array_push($a, $result[$i]["price"]);
+			array_push($a, $result[$i]["quantity"]);
+			array_push($r, $a);
+		}
+		return $r;
+	}
 
 // Check connection
 
