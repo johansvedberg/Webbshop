@@ -36,7 +36,7 @@ Skapar en tabell för inloggningsförsök.
 CREATE TABLE LoginAttempts (
 AttemptID int AUTO_INCREMENT NOT NULL,
 userEmail varchar(50) NOT NULL, 
-time ,
+time timestamp,
 IP varchar(50),
 status boolean,
 PRIMARY KEY (AttemptID),
@@ -64,9 +64,9 @@ INSERT INTO Products
 Values ('BB8 Robot', ' ', 500.00, 100);
 INSERT INTO Products
 Values ('Ducky Rubber', ' ', 2.50, 750);
-/*
+
 Gör insättningar i LoginAttempts.
-**/
+*
 INSERT INTO LoginAttempts
 Values (' ', 'adam.oldin@gmail.com', ' ','255.255.255.0', true);
 INSERT INTO LoginAttempts
