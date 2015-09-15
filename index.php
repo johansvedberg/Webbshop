@@ -37,6 +37,16 @@ $(document).ready(function() {
 
 </div>
 <div  class = "middle">
+<?php
+	for ($i = 1; $i <= count($pallets); $i++) {
+
+
+  }
+
+
+?>
+
+
 
 
 
