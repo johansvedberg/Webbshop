@@ -5,18 +5,18 @@
     $db = new Database($host, $username, $password, $dbname);
     $db->openConnection();
 
-	$db = $_SESSION['db'];
-	$id = $_SESSION['id'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+	$_SESSION['db'] = $db;
+	//$id = $_SESSION['id'];
+    $username_login = $_POST['username'];
+    $password_login = $_POST['password'];
 	//$products = $db->getProducts();
-    $login = $db->userLogin($username, $password);
+    $login = $db->userLogin($username_login, $password_login);
     if($login == true) {
-        $_SESSION['user_logged_in'] = $username;
+        $_SESSION['user_logged_in'] = $username_login;
     } else {
         $_SESSION['user_logged_in'] = null;
     }
-	   $db->closeConnection();
+	$db->closeConnection();
 ?>
 
 
