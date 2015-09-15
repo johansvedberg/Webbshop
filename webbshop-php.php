@@ -1,19 +1,19 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "webbshopDB";
+	private $servername;
+	private $username;
+	private $password;
+	private $dbname;
+	private $conn;
 
 
 	public function __construct($servername, $username, $password, $dbname) {
-		$this->servername = $servername;
-		$this->username = $username;
-		$this->password = $password;
-		$this->dbname = $dbname;
+		$this->servername = "localhost";
+		$this->username = "root";
+		$this->password = "root";
+		$this->dbname = "webbshopDB";
 	}
 
 	public function openConnection() {
-		echo "Hej";
 		try {
 			$this->conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", 
 					$this->username,  $this->password);
