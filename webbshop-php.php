@@ -105,6 +105,7 @@ $dbname = "webshopDB";
 		return $r;
 	}
 
+	
 // Check connection
 
 
