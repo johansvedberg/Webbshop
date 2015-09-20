@@ -8,18 +8,18 @@ class Database {
 	private $port;
 	private $conn;
 
-	public function __construct($host, $username, $password, $database) {
+	public function __construct($host, $username, $password, $database, $port) {
 		$this->host = $host;
 		$this->userName = $username;
 		$this->password = $password;
 		$this->database = $database;
-		$this->port = "8889";
+		$this->port = $port;
 
 	}
 
 	public function openConnection() {
 		try {
-			$this->conn = new PDO("mysql:host=$this->host;dbname=$this->database", 
+			$this->conn = new PDO("mysql:host=$this->host;port=$this->port;dbname=$this->database", 
 					"root",  "root");
 			
 
@@ -67,7 +67,7 @@ class Database {
 
 
 	public function userLogin($username, $password) {
-		$sql = "select failedLogins, password, salt from users where username = ?";
+		$sql = "select failedLogins, password, salt from users where email = ?";
 		$result = $this->executeQuery($sql, array($username));
 		if( $result[0]["failedLogins"] >= 3) {
 			return false;
@@ -76,7 +76,7 @@ class Database {
 			if($hashed == $result[0]["password"]) {
 				return true;
 			} else {
-				$sql2 = "update users set failedLogins = failedLogins + 1 where username = ?";
+				$sql2 = "update users set failedLogins = failedLogins + 1 where email = ?";
 				$result2 = $this->executeUpdate($sql2, array($username));
 				return false;
 			}
