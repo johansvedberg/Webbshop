@@ -46,7 +46,7 @@
   <div class = "login"> <div class="ar login_popup">
   <?php if ($_SESSION['user_logged_in'] == null) {
 
-
+    echo '<a class="button" href="login.html" ><b>Login</b></a>';
     echo '<a class="button" href="signup.html" ><b>Sign Up</b></a>';
   }else {
     echo "Welcome ";
