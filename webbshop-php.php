@@ -19,9 +19,9 @@ class Database {
 
 	public function openConnection() {
 		try {
-			$this->conn = new PDO("mysql:host=$this->host;port=$this->port;dbname=$this->database", 
+			$this->conn = new PDO("mysql:host=$this->host;port=$this->port;dbname=$this->database",
 					"root",  "root");
-			
+
 
 			$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} catch (PDOException $e) {
@@ -53,7 +53,7 @@ class Database {
 		}
 		return $result;
 	}
-	
+
 	private function executeUpdate($query, $param = null) {
 		try {
 			$stmt = $this->conn->prepare($query);
@@ -69,7 +69,7 @@ class Database {
 	public function userLogin($username, $password) {
 		$sql = "select failedLogins, password, salt from users where email = ?";
 		$result = $this->executeQuery($sql, array($username));
-		if( $result[0]["failedLogins"] >= 3) {
+		if( $result[0]["failedLogins"] >= 100) {
 			return false;
 		} else {
 			$hashed = hash('sha256', $password . $result[0]["salt"]);
@@ -86,9 +86,10 @@ class Database {
 
 	public function signUp($username, $password, $firstname, $lastname, $address) {
 		$salt =  sha1(time());
-		$sql = "insert into users values (?, ?, ?, ?, ?, ?, 0)";
+		$saltedpassword = hash(sha256, $password . $salt);
+		$sql = "insert into users values (?, ?, ?, ?, ?, ?, ?)";
 		try {
-			$result = $this->executeUpdate($sql, array($firstname, $lastname, $address, $username, $password, $salt));
+			$result = $this->executeUpdate($sql, array($firstname, $lastname, $address, $username, $saltedpassword, $salt, 0));
 		}	catch(PDOException $e) {
 				return false;
 		}

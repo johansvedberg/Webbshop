@@ -15,7 +15,7 @@ firstName varchar(50),
 lastName varchar(50),
 address varchar(100),
 email varchar(50) NOT NULL,
-password varchar(50) NOT NULL,
+password varchar(70) NOT NULL,
 salt varchar(32) NOT NULL,
 failedLogins int,
 PRIMARY KEY (email)
@@ -46,7 +46,7 @@ FOREIGN KEY (userEmail) REFERENCES Users(email)
 Gör insättningar i Users.
 **/
 INSERT INTO Users
-Values ('Adam', 'Oldin', 'Svanegatan 7B', 'adam.oldin@gmail.com', 'test123', '12345678', 0);
+Values ('Adam', 'Oldin', 'Svanegatan 7B', 'adam.oldin@gmail.com', 'a85b77e934bdcefa29142cf087867b56971196a89fd102ba1c6b5e9d17466deb', '12345678', 0);
 INSERT INTO Users
 Values ('Johan', 'Svedberg', 'Nilsvägen 7B', 'johan.Svedberg@gmail.com', 'test321', '87654321', 3);
 INSERT INTO Users
