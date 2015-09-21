@@ -16,7 +16,7 @@ lastName varchar(50),
 address varchar(100),
 email varchar(50) NOT NULL,
 password varchar(70) NOT NULL,
-salt varchar(32) NOT NULL,
+salt varchar(70) NOT NULL,
 failedLogins int,
 PRIMARY KEY (email)
 );

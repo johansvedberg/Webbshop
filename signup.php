@@ -26,7 +26,11 @@ $db->closeConnection();
 
 <body>
 <h1>HYCOs Webbshop</h1>
-
+<div class = "login">
+<div class="ar login_popup">
+    <a class="button" href="index.php" ><b>Home</b></a>
+</div>
+</div>
 
 
 

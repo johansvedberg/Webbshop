@@ -85,8 +85,9 @@ class Database {
 	}
 
 	public function signUp($username, $password, $firstname, $lastname, $address) {
+			//$salt = '123';
 		$salt =  sha1(time());
-		$saltedpassword = hash(sha256, $password . $salt);
+		$saltedpassword = hash('sha256', $password . $salt);
 		$sql = "insert into users values (?, ?, ?, ?, ?, ?, ?)";
 		try {
 			$result = $this->executeUpdate($sql, array($firstname, $lastname, $address, $username, $saltedpassword, $salt, 0));
