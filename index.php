@@ -37,13 +37,32 @@
 
 <body>
 <h1>HYCOs Webbshop</h1>
-<div class = "login">
-<div class="ar login_popup">
-    <a class="button" href="login.html" ><b>Login</b></a>
-    <a class="button" href="signup.html" ><b>Sign Up</b></a>
-    <b>Shopping Cart (1)</b>
-</div>
-</div>
+
+
+
+
+
+
+  <div class = "login"> <div class="ar login_popup">
+  <?php if ($_SESSION['user_logged_in'] == null) {
+
+
+    echo '<a class="button" href="signup.html" ><b>Sign Up</b></a>';
+  }else {
+    echo "Welcome ";
+    echo $_SESSION['user_logged_in'];
+    echo "! ";
+
+    echo "<b>Shopping Cart (1)</b>";
+    echo "     ";
+    echo '<a class="button" href="login.html" ><b>Logout</b></a>';
+  }
+
+   ?>
+
+  </div>
+  </div>
+
 <div  class = "middle">
 <?php
  echo $loggedin;
@@ -68,9 +87,7 @@
 </div>
 
 <div class = "shopping">
-  <?php
-  echo $_SESSION['user_logged_in'];
-   ?>
+
 
 </div>
 
