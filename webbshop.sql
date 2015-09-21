@@ -7,7 +7,7 @@ Drop table if exists Products;
 Drop table if exists LoginAttempts;
 
 set foreign_key_checks = 1;
-/* 
+/*
 Skapar tabellen för users, med email som primärnyckel.
 **/
 CREATE TABLE Users (
@@ -26,7 +26,7 @@ Skapar tabellen för produkter.
 CREATE TABLE Products (
 name varchar(50) NOT NULL,
 articleID int AUTO_INCREMENT NOT NULL,
-price int, 
+price int,
 quantity int,
 PRIMARY KEY (articleID)
 );
@@ -35,7 +35,7 @@ Skapar en tabell för inloggningsförsök.
 **/
 CREATE TABLE LoginAttempts (
 AttemptID int AUTO_INCREMENT NOT NULL,
-userEmail varchar(50) NOT NULL, 
+userEmail varchar(50) NOT NULL,
 time timestamp,
 IP varchar(50),
 status boolean,
@@ -45,13 +45,13 @@ FOREIGN KEY (userEmail) REFERENCES Users(email)
 /*
 Gör insättningar i Users.
 **/
-INSERT INTO Users 
+INSERT INTO Users
 Values ('Adam', 'Oldin', 'Svanegatan 7B', 'adam.oldin@gmail.com', 'test123', '12345678', 0);
-INSERT INTO Users 
+INSERT INTO Users
 Values ('Johan', 'Svedberg', 'Nilsvägen 7B', 'johan.Svedberg@gmail.com', 'test321', '87654321', 3);
-INSERT INTO Users 
+INSERT INTO Users
 Values ('Tjorben', 'Dolsson', 'Victoriastadion', 'Dorben.91@hotmail.com', 'qwerty', '54632178', 13);
-INSERT INTO Users 
+INSERT INTO Users
 Values ('Gust', 'Alfredsson', 'Dammhagen 12', 'Gust.rage93@gmail.com', '1234sda', '12348765', 1);
 /*
 Gör insättningar i products.
@@ -86,6 +86,3 @@ Select * from Products;
 Select * from LoginAttempts;
 Select * from Users natural join LoginAttempts;
 Select firstName lastName from Users where email = 'Dorben.91@hotmail.com';
-
-
-

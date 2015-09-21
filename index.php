@@ -11,7 +11,7 @@
     //$id = $_SESSION['id'];
     $username_login = $_POST['username'];
     $password_login = $_POST['password'];
-    //$products = $db->getProducts();
+    $products = $db->getProducts();
     $login = $db->userLogin($username_login, $password_login);
     session_start();
 
@@ -41,17 +41,22 @@
 <div class="ar login_popup">
     <a class="button" href="login.html" ><b>Login</b></a>
     <b>Shopping Cart (1)</b>
-
-
 </div>
 </div>
 <div  class = "middle">
 <?php
-	for ($i = 1; $i <= count($products); $i++) {
-  echo $products[$i]["name"];
-  echo $products[$i]["articleID"];
-  echo $products[$i]["price"];
-  echo $products[$i]["quantity"];
+
+	for ($i = 0; $i < count($products); $i++) {
+
+  echo "Name: " .$products[$i][0];
+  echo "<br>";
+  echo "ArticleID: " .$products[$i][1];
+  echo "<br>";
+  echo "Price: " .$products[$i][2];
+  echo "<br>";
+  echo "Quantity: " .$products[$i][3];
+  echo "<br>";
+  echo "<br>";
 
     }
 
@@ -66,7 +71,6 @@
 <div class = "shopping">
   <?php
   echo $username_login;
-
    ?>
 
 </div>
