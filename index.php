@@ -1,6 +1,6 @@
 <?php
     require_once('webbshop-php.php');
-    
+
     $db = new Database("localhost", "host", "host", "webbshopDB", "3306");
     $db->openConnection();
     if (!$db->isConnected()) {
@@ -14,7 +14,7 @@
     //$products = $db->getProducts();
     $login = $db->userLogin($username_login, $password_login);
     session_start();
-    
+
     if($login == true) {
         $_SESSION['user_logged_in'] = $username_login;
     } else {
@@ -39,9 +39,11 @@
 <h1>HYCOs Webbshop</h1>
 <div class = "login">
 <div class="ar login_popup">
-    <a class="button" href="#" ><b>Login</b></a>
+    <a class="button" href="login.html" ><b>Login</b></a>
     <b>Shopping Cart (1)</b>
 
+
+</div>
 </div>
 <div  class = "middle">
 <?php
@@ -60,6 +62,16 @@
 
 
 </div>
+
+<div class = "shopping">
+  <?php
+  echo $username_login;
+
+   ?>
+
+</div>
+
+
 
 </body>
 
