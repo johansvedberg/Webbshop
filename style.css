@@ -75,3 +75,11 @@ h1 {
   margin-left: -300px;
   text-align: center;
 }
+#left {
+  float: left;
+
+}
+#right {
+  float: right;
+  margin-right: 150px;
+}
