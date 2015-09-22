@@ -67,9 +67,9 @@ class Database {
 
 
 	public function userLogin($username, $password) {
-		$sql = "select failedLogins, password, salt from users where email = ?";
+		$sql = "select email, failedLogins, password, salt from users where email = ?";
 		$result = $this->executeQuery($sql, array($username));
-		if( $result[0]["failedLogins"] >= 100) {
+		if( $result[0]["failedLogins"] >= 100 || $result[0]['email'] == null) {
 			return false;
 		} else {
 			$hashed = hash('sha256', $password . $result[0]["salt"]);
@@ -79,13 +79,15 @@ class Database {
 			if($hashed == $result[0]["password"]) {
 
 				$time = date('Y-m-d G:i:s');
-				//$result3 = $this->executeUpdate($sql3, array(0,$username,$time,$hostname,true));
+				$result3 = $this->executeUpdate($sql3, array(0,$username,$time,$hostname,true));
 				return true;
 			} else {
 				$sql2 = "update users set failedLogins = failedLogins + 1 where email = ?";
 				$result2 = $this->executeUpdate($sql2, array($username));
-
-				//$result4 = $this->executeUpdate($sql3, array(0,$username,$time,$hostname,false));
+				
+				$result4 = $this->executeUpdate($sql3, array(0,$username,$time,$hostname,false));
+				
+				
 				return false;
 			}
 

@@ -1,6 +1,6 @@
 <?php
     require_once('webbshop-php.php');
-
+    session_start();
     $db = new Database("localhost", "host", "host", "webbshopDB", "3306");
     $db->openConnection();
     if (!$db->isConnected()) {
@@ -8,20 +8,26 @@
         exit();
     }
 
-    //$id = $_SESSION['id'];
-    $username_login = $_POST['username'];
-    $loginhej;
-    $password_login = $_POST['password'];
-    $products = $db->getProducts();
-    $login = $db->userLogin($username_login, $password_login);
-    session_start();
-    if($login == true) {
-        $_SESSION['user_logged_in'] = $username_login;
-        $loggedin = "Inloggad";
-    } else {
-        $_SESSION['user_logged_in'] = null;
-        $loggedin = "Ej inloggad";
+    if(1 == $_POST['login']) {
+        $username_login = $_POST['username'];
+        $loginhej;
+        $password_login = $_POST['password'];
+        $login = $db->userLogin($username_login, $password_login);
+        
+        if($login == true) {
+            $_SESSION['user_logged_in'] = $username_login;
+            $loggedin = "Inloggad";
+        } else {
+            $_SESSION['user_logged_in'] = null;
+            $loggedin = "Ej inloggad";
+        }
     }
+    
+    
+    if(null == $_SESSION['user_logged_in']) {
+        header("Location: login.html");
+    }
+    $products = $db->getProducts();
     $db->closeConnection();
     $_SESSION['db'] = $db;
 ?>
