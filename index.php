@@ -71,7 +71,7 @@
 
     echo "<b>Shopping Cart (1)</b>";
     echo "     ";
-    echo '<a class="button" href="login.html" ><b>Logout</b></a>';
+    echo '<a class="button" href="logout.php" ><b>Logout</b></a>';
   }
 
    ?>

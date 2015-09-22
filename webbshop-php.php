@@ -105,6 +105,16 @@ class Database {
 		}
 	}
 
+	public function userLogout($username) {
+		$sql =  "update users set session = null where email = ?";
+		$result =  $this->executeUpdate($sql, array($username));
+		if($result == null) {
+			return false;
+		}
+		return true;
+
+	}
+
 	public function signUp($username, $password, $firstname, $lastname, $address) {
 			//$salt = '123';
 		$salt =  sha1(time());
