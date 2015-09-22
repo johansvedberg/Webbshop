@@ -65,19 +65,30 @@ class Database {
 		return $stmt->rowCount();
 	}
 
+	public function userCheck($username, $ip) {
+		$sql = "select session from users where email = ?";
+		$result = $this->executeQuery($sql, array($username));
+		if(hash('sha256', $username . $ip) == $result[0]['session']) {
+			return true;
+		}
+		return false;
+	}
 
 	public function userLogin($username, $password) {
 		$sql = "select email, failedLogins, password, salt from users where email = ?";
 		$result = $this->executeQuery($sql, array($username));
+		$ip = $_SERVER['REMOTE_ADDR'];
 		if( $result[0]["failedLogins"] >= 100 || $result[0]['email'] == null) {
 			return false;
 		} else {
 			$hashed = hash('sha256', $password . $result[0]["salt"]);
 			$sql3 = "insert into LoginAttempts values(?, ?, ?, ?, ?)";
-			$ip = $_SERVER['REMOTE_ADDR'];
+			
 			$hostname = gethostbyaddr($ip);
 			if($hashed == $result[0]["password"]) {
-
+				$sql5 = "update users set session = ? where email = ?";
+				$session = hash('sha256', $username . $ip);
+				$result5 = $this->executeupdate($sql5, array($session, $username));
 				$time = date('Y-m-d G:i:s');
 				$result3 = $this->executeUpdate($sql3, array(0,$username,$time,$hostname,true));
 				return true;
@@ -100,7 +111,7 @@ class Database {
 		$saltedpassword = hash('sha256', $password . $salt);
 		$sql = "insert into users values (?, ?, ?, ?, ?, ?, ?)";
 		try {
-			$result = $this->executeUpdate($sql, array($firstname, $lastname, $address, $username, $saltedpassword, $salt, 0));
+			$result = $this->executeUpdate($sql, array($firstname, $lastname, $address, $username, $saltedpassword, $salt, 0, null));
 		}	catch(PDOException $e) {
 				return false;
 		}

@@ -1,7 +1,12 @@
 <?php
     require_once('webbshop-php.php');
     session_start();
-    $db = new Database("localhost", "host", "host", "webbshopDB", "3306");
+
+    if($_SESSION['db'] == null) {
+        $db = new Database("localhost", "host", "host", "webbshopDB", "3306");
+    } else {
+        $db = $_SESSION['db'];
+    }
     $db->openConnection();
     if (!$db->isConnected()) {
         header("Location: cannotConnect.html");
@@ -26,6 +31,11 @@
     
     if(null == $_SESSION['user_logged_in']) {
         header("Location: login.html");
+    } else {
+        $ip = $_SERVER["REMOTE_ADDR"];
+        if($db->userCheck($_SESSION['user_logged_in'], $ip) == false) {
+            header("Location: login.html");
+        }
     }
     $products = $db->getProducts();
     $db->closeConnection();
