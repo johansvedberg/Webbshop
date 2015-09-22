@@ -48,20 +48,21 @@ Gör insättningar i Users.
 **/
 INSERT INTO Users
 Values ('Adam', 'Oldin', 'Svanegatan 7B', 'adam.oldin@gmail.com', 'a85b77e934bdcefa29142cf087867b56971196a89fd102ba1c6b5e9d17466deb', '12345678', 0, NULL);
-
 /*
 Gör insättningar i products.
 **/
 INSERT INTO Products
-Values ('Rubber Ducky', ' ',5.00, 500);
+Values ('Tuborg', ' ',5.00, 500);
 INSERT INTO Products
-Values ('Toy Locomotive', ' ', 15.00, 250);
+Values ('Carlsberg', ' ', 15.00, 250);
 INSERT INTO Products
-Values ('BB8 Robot', ' ', 500.00, 100);
+Values ('Heineken', ' ', 500.00, 100);
 INSERT INTO Products
-Values ('Ducky Rubber', ' ', 2.50, 750);
-
-/*
-Genomför lite tester.
-**/
-
+Values ('Smålands', ' ', 2.50, 750);
+INSERT INTO Products
+Values ('Omnipollo Leon', ' ', 2.50, 750);
+INSERT INTO Products
+Values ('Leffe', ' ', 2.50, 750);
+INSERT INTO Products
+Values ('Lagunitas Maximus', ' ', 2.50, 750);
+INSERT INTO Products
