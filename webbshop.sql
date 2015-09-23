@@ -65,4 +65,3 @@ INSERT INTO Products
 Values ('Leffe', ' ', 2.50, 750);
 INSERT INTO Products
 Values ('Lagunitas Maximus', ' ', 2.50, 750);
-INSERT INTO Products

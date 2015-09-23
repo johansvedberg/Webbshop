@@ -83,7 +83,7 @@ class Database {
 		} else {
 			$hashed = hash('sha256', $password . $result[0]["salt"]);
 			$sql3 = "insert into LoginAttempts values(?, ?, ?, ?, ?)";
-			
+
 			$hostname = gethostbyaddr($ip);
 			if($hashed == $result[0]["password"]) {
 				$sql5 = "update users set session = ? where email = ?";
@@ -95,10 +95,10 @@ class Database {
 			} else {
 				$sql2 = "update users set failedLogins = failedLogins + 1 where email = ?";
 				$result2 = $this->executeUpdate($sql2, array($username));
-				
+
 				$result4 = $this->executeUpdate($sql3, array(0,$username,$time,$hostname,false));
-				
-				
+
+
 				return false;
 			}
 
@@ -119,7 +119,7 @@ class Database {
 			//$salt = '123';
 		$salt =  sha1(time());
 		$saltedpassword = hash('sha256', $password . $salt);
-		$sql = "insert into users values (?, ?, ?, ?, ?, ?, ?)";
+		$sql = "insert into users values (?, ?, ?, ?, ?, ?, ?,?)";
 		try {
 			$result = $this->executeUpdate($sql, array($firstname, $lastname, $address, $username, $saltedpassword, $salt, 0, null));
 		}	catch(PDOException $e) {
