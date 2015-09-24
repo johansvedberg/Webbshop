@@ -2,7 +2,7 @@
 	require_once('webbshop-php.php');
 	session_start();
 	$db = $_SESSION['db'];
-	$db->openConnection();	
+	$db->openConnection();
 	$db->userLogout($_SESSION['user_logged_in']);
 	$_SESSION['user_logged_in'] = null;
 	$db->closeConnection();
@@ -23,7 +23,11 @@
 <h1>HYCOs Webbshop</h1>
 
         <p>You are logged out!</p>
-       
+				<div class="login">
+					<a class="button" href="index.php" ><b>Home</b></a>
+
+				</div>
+
 
 </body>
 

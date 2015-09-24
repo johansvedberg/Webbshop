@@ -18,7 +18,7 @@
         $loginhej;
         $password_login = $_POST['password'];
         $login = $db->userLogin($username_login, $password_login);
-        
+
         if($login == true) {
             $_SESSION['user_logged_in'] = $username_login;
             $loggedin = "Inloggad";
@@ -27,8 +27,8 @@
             $loggedin = "Ej inloggad";
         }
     }
-    
-    
+
+
     if(null == $_SESSION['user_logged_in']) {
         header("Location: login.html");
     } else {

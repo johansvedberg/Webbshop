@@ -10,7 +10,8 @@ $address = $_REQUEST['address'];
 $db->openConnection();
 $db->signUp($email, $password, $firstname, $lastname, $address);
 $db->closeConnection();
-
+header("Location: index.php");
+die();
  ?>
 
 
