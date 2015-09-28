@@ -74,7 +74,7 @@
     echo $_SESSION['user_logged_in'];
     echo "! ";
 
-    echo "<b>Shopping Cart (1)</b>";
+    echo "<b> <a href='cart.php'> Shopping Cart ( ".sizeof($_SESSION['cart']). " )<a></b>";
     echo "     ";
     echo '<a class="button" href="logout.php" ><b>Logout</b></a>';
   }

@@ -145,18 +145,15 @@ class Database {
 	}
 
 	public function getCartItems($items) {
-		$sql = "select name, articleID, price, quantity from Products where articleID = ?";
+		$sql = "select name, articleID, price from Products where articleID = ?";
 		$r = [];
-		for($j = 0; $j < sizeof($items); $j++) {
-			$result = $this->executeQuery($sql, $items[$j]);
-			for($i = 0; $i < count($result); $i++) {
-				$a = [];
-				array_push($a, $result[$i]["name"]);
-				array_push($a, $result[$i]["articleID"]);
-				array_push($a, $result[$i]["price"]);
-				array_push($a, $result[$i]["quantity"]);
-				array_push($r, $a);
-			}
+		for($i = 0; $i < count($items); $i++) {
+			$result = $this->executeQuery($sql, array($items[$i]));
+			$a = [];
+			array_push($a, $result[0]["name"]);
+			array_push($a, $result[0]["articleID"]);
+			array_push($a, $result[0]["price"]);
+			array_push($r, $a);
 		}
 		return $r;
 	}

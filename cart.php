@@ -9,6 +9,7 @@ $db = $_SESSION['db'];
 $db->openConnection();
 $cartitems = $db->getCartItems($cart);
 $db->closeConnection();
+$_SESSION['cart'] = $cart;
 ?>
 <html>
 
@@ -25,8 +26,13 @@ $db->closeConnection();
 <h1>HYCOs Webbshop</h1>
 <div class = "login">
 <div class="ar login_popup">
-    <a class="button" href="#" ><b>Login</b></a>
-    <b>Shopping Cart (1)</b>
+    <a class="button" href="index.php" ><b>Back</b></a>
+    <b>Shopping Cart (
+        <?php
+            echo sizeof($cart);
+        ?>
+        )
+    </b>
     
 </div>
 
@@ -34,11 +40,11 @@ $db->closeConnection();
 <div  class = "middle">
 <?php
     echo $_POST['item_to_cart'];
-    echo sizeof($cart);
-    echo $cartitems[0][0];
-	for ($i = 0; $i < sizeof($cart); $i++) {
+    echo sizeof($cartitems);
+    echo $cartitems[1]["name"];
+	for ($i = 0; $i < count($cartitems); $i++) {
         echo "<p>";
-        echo "Name: " .$cartitems[$i][0];
+        echo "Name: " . $cartitems[$i][0];
         echo "    ArticleID: " .$cartitems[$i][1];
         echo "    Price: " .$cartitems[$i][2];
         echo "<br>";
