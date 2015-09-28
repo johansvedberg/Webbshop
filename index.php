@@ -2,9 +2,9 @@
     require_once('webbshop-php.php');
     session_start();
 
+    
     if($_SESSION['db'] == null) {
         $db = new Database("localhost", "host", "host", "webbshopDB", "3306");
-        $_SESSION['cart'] = array();
     } else {
         $db = $_SESSION['db'];
     }
@@ -37,6 +37,10 @@
         if($db->userCheck($_SESSION['user_logged_in'], $ip) == false) {
             header("Location: login.html");
         }
+    }
+
+    if($_SESSION['cart'] == null) {
+      $_SESSION['cart'] = array();
     }
     $products = $db->getProducts();
     $db->closeConnection();
@@ -105,7 +109,7 @@
   echo "<br>";
 
   echo "<form action='cart.php' method='post'>";
-  echo "<button name='name' value=" .$products[$i][1] ." type='submit'>Add to cart</button>";
+  echo "<button name='item_to_cart' value=".$products[$i][1]." type='submit'>Add to cart</button>";
   echo "</form>";
 
 

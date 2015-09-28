@@ -146,7 +146,7 @@ class Database {
 
 	public function getCartItems($items) {
 		for($i = 0; $i < sizeof($items); $i++) {
-			$sql = "select name, ?, price, quantity from Products";
+			$sql = "select name, articleID, price, quantity from Products where articleID = ?";
 			$result = $this->executeQuery($sql, $items[$i]);
 			$r = [];
 			for($i = 0; $i < count($result); $i++) {
@@ -157,9 +157,8 @@ class Database {
 				array_push($a, $result[$i]["quantity"]);
 				array_push($r, $a);
 			}
-			return $r;
 		}
-		
+		return $r;
 	}
 }
 

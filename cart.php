@@ -1,25 +1,22 @@
 <?php 
+require_once('webbshop-php.php');
 session_start();
-
-array_push($_SESSION['cart'], $_POST['item_to_cart']);
-
+$cart = $_SESSION['cart'];
+if($_POST['item_to_cart'] != null) {
+   array_push($cart, $_POST['item_to_cart']); 
+}
+$db = $_SESSION['db'];
+$db->openConnection();
+$cartitems = $db->getCartItems($cart);
+$db->closeConnection();
+?>
 <html>
 
 <head>
 <title>HYCO</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-    $(".button").click(function(e) {
-        $("body").append('');
-        $(".popup").show();
-        $(".close").click(function(e) {
-        $(".popup, .overlay").hide();
-        });
-    });
-});</script>
+
 
 
 </head>
@@ -36,15 +33,15 @@ $(document).ready(function() {
 </div>
 <div  class = "middle">
 <?php
-    $cartitems = $_SESSION['db']->getCartItems($_SESSION['cart']);
-	for ($i = 1; $i < sizeof($_SESSION['cart']); $i++) {
-        echo "Name: " .$products[$i][0];
-        echo "/t";
-        echo "ArticleID: " .$products[$i][1];
-        echo "/t";
-        echo "Price: " .$products[$i][2];
+    echo $_POST['item_to_cart'];
+    echo sizeof($cart);
+	for ($i = 0; $i < sizeof($cart); $i++) {
+        echo "<p>";
+        echo "Name: " .$cartitems[$i][0];
+        echo "    ArticleID: " .$cartitems[$i][1];
+        echo "    Price: " .$cartitems[$i][2];
         echo "<br>";
-
+        echo "</p>";
   }
 
 
