@@ -66,20 +66,12 @@ h1 {
 
 .middle {
   border: 10px;
-  height: 600px;
-  width: 600px;
+  height: 1000px;
+  width: 800px;
   position: fixed;
   top: 50%;
   left: 50%;
   margin-top: -300px;
   margin-left: -300px;
   text-align: center;
-}
-#left {
-  float: left;
-
-}
-#right {
-  float: right;
-  margin-right: 150px;
 }

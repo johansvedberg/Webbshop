@@ -83,13 +83,18 @@
 
 <div  class = "middle">
 
+<table  cellspacing="70"  ><tr>
 <?php
-
 
 	for ($i = 0; $i < count($products); $i++) {
 
+        if ($i > 0 && ($i % 3 == 0)) {
+            echo("</tr><tr>");
+        }
 
-  echo "Name: " .$products[$i][0];
+  echo"<td>";
+
+  echo $products[$i][0];
   echo "<br>";
   echo "ArticleID: " .$products[$i][1];
   echo "<br>";
@@ -99,9 +104,25 @@
   echo "<br>";
   echo "<br>";
 
+  echo "<form action='cart.php' method='post'>";
+  echo "<button name='name' value=" .$products[$i][1] ." type='submit'>Add to cart</button>";
+  echo "</form>";
+
+
+
+  echo "<br>";
+  echo "</td>";
+
     }
 
 ?>
+
+</tr></table>
+
+
+
+
+
 
 
 </div>
