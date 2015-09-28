@@ -77,15 +77,16 @@
    ?>
 
   </div>
+
   </div>
 
 <div  class = "middle">
-<?php
- echo $loggedin;
- echo "<br>";
 
- echo "<br>";
+<?php
+
+
 	for ($i = 0; $i < count($products); $i++) {
+
 
   echo "Name: " .$products[$i][0];
   echo "<br>";
@@ -100,12 +101,15 @@
     }
 
 ?>
+
+
 </div>
 
 <div class = "shopping">
 
 
 </div>
+
 
 
 
