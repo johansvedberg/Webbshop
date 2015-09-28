@@ -35,6 +35,7 @@ $db->closeConnection();
 <?php
     echo $_POST['item_to_cart'];
     echo sizeof($cart);
+    echo $cartitems[0][0];
 	for ($i = 0; $i < sizeof($cart); $i++) {
         echo "<p>";
         echo "Name: " .$cartitems[$i][0];
