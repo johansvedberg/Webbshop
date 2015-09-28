@@ -4,6 +4,7 @@
 
     if($_SESSION['db'] == null) {
         $db = new Database("localhost", "host", "host", "webbshopDB", "3306");
+        $_SESSION['cart'] = array();
     } else {
         $db = $_SESSION['db'];
     }

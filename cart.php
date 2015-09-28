@@ -1,3 +1,8 @@
+<?php 
+session_start();
+
+array_push($_SESSION['cart'], $_POST['item_to_cart']);
+
 <html>
 
 <head>
@@ -25,14 +30,7 @@ $(document).ready(function() {
 <div class="ar login_popup">
     <a class="button" href="#" ><b>Login</b></a>
     <b>Shopping Cart (1)</b>
-    <div class="popup">
-        <form>
-            <P><span class="title">Username</span> <input name="" type="text" /></P>
-            <P><span class="title">Password</span> <input name="" type="password" /></P>
-            <P><input name="" type="button" value="Login" /></P>
-        </form>
-        <a href="#" class="close">Close</a>
-    </div>
+    
 </div>
 
 </div>
