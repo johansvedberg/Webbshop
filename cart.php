@@ -36,8 +36,14 @@ $(document).ready(function() {
 </div>
 <div  class = "middle">
 <?php
-	for ($i = 1; $i <= count($pallets); $i++) {
-
+    $cartitems = $_SESSION['db']->getCartItems($_SESSION['cart']);
+	for ($i = 1; $i < sizeof($_SESSION['cart']); $i++) {
+        echo "Name: " .$products[$i][0];
+        echo "/t";
+        echo "ArticleID: " .$products[$i][1];
+        echo "/t";
+        echo "Price: " .$products[$i][2];
+        echo "<br>";
 
   }
 

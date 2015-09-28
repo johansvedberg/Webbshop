@@ -143,6 +143,24 @@ class Database {
 		}
 		return $r;
 	}
+
+	public function getCartItems($items) {
+		for($i = 0; $i < sizeof($items); $i++) {
+			$sql = "select name, ?, price, quantity from Products";
+			$result = $this->executeQuery($sql, $items[$i]);
+			$r = [];
+			for($i = 0; $i < count($result); $i++) {
+				$a = [];
+				array_push($a, $result[$i]["name"]);
+				array_push($a, $result[$i]["articleID"]);
+				array_push($a, $result[$i]["price"]);
+				array_push($a, $result[$i]["quantity"]);
+				array_push($r, $a);
+			}
+			return $r;
+		}
+		
+	}
 }
 
 ?>
