@@ -157,6 +157,32 @@ class Database {
 		}
 		return $r;
 	}
+
+	public function getPosts() {
+		$sql = "select email, postText, time from Posts";
+		$result = $this->executeQuery($sql, null);
+		$r = [];
+		for($i = 0; $i < count($result); $i++) {
+			$a = [];
+			array_push($a, $result[$i]["email"]);
+			array_push($a, $result[$i]["postText"]);
+			array_push($a, $result[$i]["time"]);
+			array_push($r, $a);
+		}
+		return $r;
+	}
+
+	public function postPost($email, $postText) {
+		$sql = "insert into Posts values (?,?,?)";
+		$time = date('Y-m-d G:i:s');
+		try {
+			$result =  $this->executeUpdate($sql, array($email, $postText, $time));
+		} catch(PDOException $e) {
+			return false;
+		}
+		return $result;
+
+	}
 }
 
 ?>

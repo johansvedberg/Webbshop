@@ -74,13 +74,13 @@
     echo $_SESSION['user_logged_in'];
     echo "! ";
 
-    echo "<b> <a href='cart.php'> Shopping Cart ( ".sizeof($_SESSION['cart']). " )<a></b>";
+    echo "<b> <a href='cart.php' class='button'> Shopping Cart ( ".sizeof($_SESSION['cart']). " )<a></b>";
     echo "     ";
     echo '<a class="button" href="logout.php" ><b>Logout</b></a>';
   }
 
    ?>
-
+  <a href="guestbook.php" class="button">Guestbook</a>
   </div>
 
   </div>

@@ -5,6 +5,7 @@ set foreign_key_checks = 0;
 Drop table if exists Users;
 Drop table if exists Products;
 Drop table if exists LoginAttempts;
+Drop table if exists Posts;
 
 set foreign_key_checks = 1;
 /*
@@ -42,6 +43,14 @@ IP varchar(50),
 status boolean,
 PRIMARY KEY (AttemptID),
 FOREIGN KEY (userEmail) REFERENCES Users(email)
+);
+
+CREATE TABLE Posts (
+email varchar(50) NOT NULL,
+postText text,
+time timestamp NOT NULL,
+PRIMARY KEY (time),
+FOREIGN KEY (email) REFERENCES Users(email)
 );
 /*
 Gör insättningar i Users.

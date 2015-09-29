@@ -44,7 +44,7 @@ $_SESSION['cart'] = $cart;
     echo $cartitems[1]["name"];
 	for ($i = 0; $i < count($cartitems); $i++) {
         echo "<p>";
-        echo "Name: " . $cartitems[$i][0];
+        echo "Name: " .$cartitems[$i][0];
         echo "    ArticleID: " .$cartitems[$i][1];
         echo "    Price: " .$cartitems[$i][2];
         echo "<br>";
