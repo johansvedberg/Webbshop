@@ -1,16 +1,17 @@
 <?php 
 require_once('webbshop-php.php');
 session_start();
-$cart = $_SESSION['cart'];
-if($_POST['item_to_cart'] != null) {
-   array_push($cart, $_POST['item_to_cart']); 
+if($_SESSION['CSRFTokenCart'] != $_POST['CSRFTokenCart']) {
+    header("Location: cart.php");
+    exit();
 }
-$_SESSION['CSRFTokenCart'] = hash('sha256', time());
+$cart = $_SESSION['cart'];
+
 $db = $_SESSION['db'];
 $db->openConnection();
 $cartitems = $db->getCartItems($cart);
 $db->closeConnection();
-$_SESSION['cart'] = $cart;
+$_SESSION['cart'] = array();
 ?>
 <html>
 
@@ -28,11 +29,7 @@ $_SESSION['cart'] = $cart;
 <div class = "login">
 <div class="ar login_popup">
     <a class="button" href="index.php" ><b>Back</b></a>
-    <b>Shopping Cart (
-        <?php
-            echo sizeof($cart);
-        ?>
-        )
+    <b>Shopping Cart (0)
     </b>
     
 </div>
@@ -40,29 +37,29 @@ $_SESSION['cart'] = $cart;
 </div>
 <div  class = "middle">
 <?php
-   
-    echo "<h2> You have ".sizeof($cartitems) . " items in your cart! </h2>" ;
+   $sum = 0;
+    if(sizeof($cartitems) == 1) {
+        echo "<h2> You have ordered ".sizeof($cartitems) . " item! </h2>" ;
+    } else {
+        echo "<h2> You have ordered ".sizeof($cartitems) . " items! </h2>" ;
+    }
+    
     
 	for ($i = 0; $i < count($cartitems); $i++) {
         echo "<p>";
         echo "Name: " .$cartitems[$i][0];
         echo "    ArticleID: " .$cartitems[$i][1];
-        echo "    Price: " .$cartitems[$i][2];
+        echo "    Price: " .$cartitems[$i][2]. " kr";
+        $sum += $cartitems[$i][2];
         echo "<br>";
         echo "</p>";
   }
 
+  echo "<h2> Total amount: ".$sum . " kr </h2>";
 
 ?>
 </div>
-<div class="middle">
-    <form action="receipt.php" method="post">
-        <?php
-            echo "<input type='hidden' value=". $_SESSION['CSRFTokenCart'] . " name='CSRFTokenCart'>";
-            echo "<input type='submit' name='buy'>"
 
-        ?>
-    </form>
 
 </body>
 
