@@ -59,7 +59,7 @@ $_SESSION['cart'] = $cart;
     <form action="receipt.php" method="post">
         <?php
             echo "<input type='hidden' value=". $_SESSION['CSRFTokenCart'] . " name='CSRFTokenCart'>";
-            echo "<input type='submit' name='buy'>"
+            echo "<input type='submit' value='Buy'>"
 
         ?>
     </form>
