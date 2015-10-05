@@ -45,6 +45,7 @@
     $products = $db->getProducts();
     $db->closeConnection();
     $_SESSION['db'] = $db;
+    $_SESSION['CSRFTokenIndex'] = hash('sha256', time());
 ?>
 
 
@@ -90,7 +91,7 @@
 <table  cellspacing="70"  ><tr>
 <?php
 
-	for ($i = 0; $i < count($products); $i++) {
+  for ($i = 0; $i < count($products); $i++) {
 
         if ($i > 0 && ($i % 3 == 0)) {
             echo("</tr><tr>");
@@ -109,6 +110,7 @@
   echo "<br>";
 
   echo "<form action='cart.php' method='post'>";
+  echo "<input type='hidden' value=". $_SESSION['CSRFTokenIndex'] . " name='CSRFTokenIndex'>";
   echo "<button name='item_to_cart' value=".$products[$i][1]." type='submit'>Add to cart</button>";
   echo "</form>";
 
