@@ -1,3 +1,4 @@
+//Glöm inte att ändra document root i httpd-ssl.conf
 <?php
 
 class Database {
