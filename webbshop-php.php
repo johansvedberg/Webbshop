@@ -1,4 +1,3 @@
-//Glöm inte att ändra document root i httpd-ssl.conf
 <?php
 
 class Database {
@@ -117,12 +116,16 @@ class Database {
 	}
 
 	public function signUp($username, $password, $firstname, $lastname, $address) {
-			//$salt = '123';
+		$sql = "select email from users where email = ?";
+		$r = $this->executeQuery($sql, array($username));
+		if(strlen($password) < 8 || $r[0]['email'] != null) {
+			return false;
+		}
 		$salt =  sha1(time());
 		$saltedpassword = hash('sha256', $password . $salt);
-		$sql = "insert into users values (?, ?, ?, ?, ?, ?, ?,?)";
+		$sql2 = "insert into users values (?, ?, ?, ?, ?, ?, ?,?)";
 		try {
-			$result = $this->executeUpdate($sql, array($firstname, $lastname, $address, $username, $saltedpassword, $salt, 0, null));
+			$result = $this->executeUpdate($sql2, array($firstname, $lastname, $address, $username, $saltedpassword, $salt, 0, null));
 		}	catch(PDOException $e) {
 				return false;
 		}

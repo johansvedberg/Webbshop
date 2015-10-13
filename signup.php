@@ -8,10 +8,14 @@ $firstname = $_REQUEST['firstname'];
 $lastname = $_REQUEST['lastname'];
 $address = $_REQUEST['address'];
 $db->openConnection();
-$db->signUp($email, $password, $firstname, $lastname, $address);
+$signupOK = $db->signUp($email, $password, $firstname, $lastname, $address);
 $db->closeConnection();
-header("Location: index.php");
-die();
+if($signupOK == true) {
+	header("Location: index.php");
+	die();
+}
+
+
  ?>
 
 
@@ -30,9 +34,19 @@ die();
 <div class = "login">
 <div class="ar login_popup">
     <a class="button" href="index.php" ><b>Home</b></a>
+
 </div>
 </div>
 
+<div id="middle">
+	<?php
+		if(strlen($password) < 8) {
+			echo "<p>Your password was only ".strlen($password)." characters long. It needs to be at least 8 characters long</p>";
+		} else {
+			echo "<p>Something went wrong!</p>";
+		}
+		?>
+		</div>
 
 
 </body>
