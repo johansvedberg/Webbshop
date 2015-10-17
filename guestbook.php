@@ -2,7 +2,7 @@
 	require_once('webbshop-php.php');
 	session_start();
 
-	
+
 	$db = $_SESSION['db'];
 	$db->openConnection();
 	if($_POST['postText'] != null and $_SESSION['CSRFTokenBook'] == $_POST['CSRFTokenBook']) {
@@ -32,9 +32,11 @@
 <?php
 	for ($i = 0; $i < count($posts); $i++) {
         echo "<p>";
-        echo "Name: " .$posts[$i][0];
-        echo "    Text: " .$posts[$i][1];
-        echo "    Time: " .$posts[$i][2];
+        echo $posts[$i][0];
+				echo "    (" .$posts[$i][2]. ")";
+				echo "<br>";
+				echo "<br>";
+        echo $posts[$i][1];
         echo "<br>";
         echo "</p>";
   }
