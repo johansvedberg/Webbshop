@@ -32,12 +32,15 @@
 <?php
 	for ($i = 0; $i < count($posts); $i++) {
         echo "<p>";
+
         echo $posts[$i][0];
 				echo "    (" .$posts[$i][2]. ")";
 				echo "<br>";
 				echo "<br>";
         echo $posts[$i][1];
         echo "<br>";
+				  echo "<br>";
+				echo "---------------------------------------------------------------------------";
         echo "</p>";
   }
 
