@@ -1,9 +1,9 @@
-<?php 
+<?php
 require_once('webbshop-php.php');
 session_start();
 $cart = $_SESSION['cart'];
 if($_POST['item_to_cart'] != null && $_SESSION['CSRFTokenIndex'] == $_POST['CSRFTokenIndex']) {
-   array_push($cart, $_POST['item_to_cart']); 
+   array_push($cart, $_POST['item_to_cart']);
 }
 $_SESSION['CSRFTokenCart'] = hash('sha256', time());
 $db = $_SESSION['db'];
@@ -34,15 +34,15 @@ $_SESSION['cart'] = $cart;
         ?>
         )
     </b>
-    
+
 </div>
 
 </div>
 <div  class = "middle">
 <?php
-   
+
     echo "<h2> You have ".sizeof($cartitems) . " items in your cart! </h2>" ;
-    
+
     for ($i = 0; $i < count($cartitems); $i++) {
         echo "<p>";
         echo "Name: " .$cartitems[$i][0];
@@ -59,7 +59,7 @@ $_SESSION['cart'] = $cart;
     <form action="receipt.php" method="post">
         <?php
             echo "<input type='hidden' value=". $_SESSION['CSRFTokenCart'] . " name='CSRFTokenCart'>";
-            echo "<input type='submit' value='buy'>"
+            echo "<input type='submit' value='Buy'>"
 
         ?>
     </form>

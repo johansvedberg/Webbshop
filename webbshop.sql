@@ -67,7 +67,7 @@ Values ('Carlsberg', ' ', 15.00, 250);
 INSERT INTO Products
 Values ('Heineken', ' ', 500.00, 100);
 INSERT INTO Products
-Values ('Smålands', ' ', 2.50, 750);
+Values ('La Trappe', ' ', 2.50, 750);
 INSERT INTO Products
 Values ('Omnipollo Leon', ' ', 2.50, 750);
 INSERT INTO Products

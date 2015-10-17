@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once('webbshop-php.php');
 session_start();
 if($_SESSION['CSRFTokenCart'] != $_POST['CSRFTokenCart']) {
@@ -31,7 +31,7 @@ $_SESSION['cart'] = array();
     <a class="button" href="index.php" ><b>Back</b></a>
     <b>Shopping Cart (0)
     </b>
-    
+
 </div>
 
 </div>
@@ -43,8 +43,8 @@ $_SESSION['cart'] = array();
     } else {
         echo "<h2> You have ordered ".sizeof($cartitems) . " items! </h2>" ;
     }
-    
-    
+
+
 	for ($i = 0; $i < count($cartitems); $i++) {
         echo "<p>";
         echo "Name: " .$cartitems[$i][0];

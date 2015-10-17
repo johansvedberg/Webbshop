@@ -36,6 +36,7 @@ h1 {
    	left:0;
    	margin-top: 0.6em;
    	margin-left: 0.6em;
+
 }
 
 .button {
@@ -45,6 +46,16 @@ h1 {
     color: #ABB2BF;
 }
 
+table
+        {
+          margin: 0 auto;
+          
+          border-collapse: separate;
+        }
+
+td{
+  width: 150px;
+}
 
 .overlay {
     z-index: 5;

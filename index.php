@@ -2,7 +2,7 @@
     require_once('webbshop-php.php');
     session_start();
 
-    
+
     if($_SESSION['db'] == null) {
         $db = new Database("localhost", "host", "host", "webbshopDB", "3306");
     } else {
@@ -55,19 +55,19 @@
 <title>HYCO</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<meta charset="UTF-8">
 </head>
 
 <body>
-<h1>HYCOs Webbshop</h1>
 
 
 
 
 
 
-  <div class = "login"> <div class="ar login_popup">
+
+  <div class = "login">
   <?php if ($_SESSION['user_logged_in'] == null) {
-
     echo '<a class="button" href="login.html" ><b>Login</b></a>';
     echo '<a class="button" href="signup.html" ><b>Sign Up</b></a>';
   }else {
@@ -82,13 +82,14 @@
 
    ?>
   <a href="guestbook.php" class="button">Guestbook</a>
-  </div>
+
 
   </div>
-
+  <br>
+<h1>HYCOs Webbshop</h1>
 <div  class = "middle">
 
-<table  cellspacing="70"  ><tr>
+<table><tr>
 <?php
 
   for ($i = 0; $i < count($products); $i++) {
